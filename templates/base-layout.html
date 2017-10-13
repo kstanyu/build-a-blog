@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+
+<html>
+    <head>
+        <meta content = "initial-scale = 1, width = device-width" name =  "viewport" />
+        <style>
+        {% block style %} {% endblock %}
+        </style>
+        <title> {% block title %} {% endblock %} </title>
+    </head>
+    <body>
+        <div>
+            <div>
+                <nav>
+                    <a href = "{{url_for('blog')}}">Home</a>
+                    <a href = "{{url_for('newpost')}}">Make A Post</a>
+                </nav>
+            </div>
+            <div>
+                {% block content %} {% endblock %}
+            </div>
+        </div>
+    </body>
+</html>

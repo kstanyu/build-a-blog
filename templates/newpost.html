@@ -1,0 +1,20 @@
+{% extends "base-layout.html" %}
+
+{% block content %}
+   
+    <form action = "{{url_for('newpost')}}", method = "POST">
+        <label>
+            <input name = "blog_title" type = "text" />
+        </label>
+        <br />
+        <label>
+            Your New Bloc Post
+            <textarea name = "blog_post">
+            </textarea>
+        </label>
+        <br />
+
+        <input type = "submit" value = "Add Entry"/>
+    </form>
+{% endblock %}
+
