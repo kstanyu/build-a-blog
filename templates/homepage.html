@@ -13,7 +13,7 @@
             <ul>
                 {% for blog_p in blogposts %}
                 <li>
-                    <a href="./blog?id={{:wq:w}}" >{{blog_p.blog_title}}</a>
+                    <a href="./blog?id={{blog_p.id}}" >{{blog_p.blog_title}}</a>
                     {{blog_p.new_post}}
                 </li>
             {% endfor %}

@@ -33,24 +33,29 @@ def index():
 @app.route("/blog", methods = ["POST", "GET"])
 def blog():
     blog_posts = Blog.query.all()
-    if request.method == "GET":
-        btitle = request.args.get('blog_title')
-        blog_id = Blog.query.get(btitle)
-       return render_template("blog_post.html", block_title = )
-    return render_template("homepage.html", title = "BUILD A BLOG", blogposts = blog_posts)
+
+    blog_id = request.args.get('id')
+    if blog_id is None: 
+        return render_template("homepage.html", title = "BUILD A BLOG", blogposts = blog_posts)
+    else:
+        blog_entry = Blog.query.get(blog_id)
+        return render_template("blog-post.html", blog_title = blog_entry.blog_title, blog_content = blog_entry.blog_post)
+
+    #return render_template("homepage.html", title = "BUILD A BLOG", blogposts = blog_posts)
 
 @app.route("/newpost", methods = ["POST", "GET"])
 def newpost(): 
     if request.method == "POST":
         if (request.form["blog_title"] == "") or (request.form["blog_post"] == ""):
-            return redirect (url_for("newpost"))
+            return render_template("newpost.html")
         else:
             blog_title = request.form["blog_title"]
             new_post = request.form["blog_post"]
             new_blog = Blog(blog_title, new_post)
             db.session.add(new_blog)
             db.session.commit()
-            return redirect(url_for("blog"))
+        
+            return redirect(url_for("blog", id = [new_blog.id]))
     
     return render_template("newpost.html")
 
