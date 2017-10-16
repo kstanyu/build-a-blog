@@ -1,5 +1,6 @@
 
 from flask import Flask, redirect, render_template, request, url_for
+from signup_info_checks import *
 from flask_sqlalchemy import SQLAlchemy
 
 app = Flask(__name__)
@@ -20,11 +21,11 @@ class Blog(db.Model):
         self.blog_title = blog_title
         self.blog_post = blog_post
 
-def is_empty(usr_string):
-    empty = True
-    if usr_string != "":
-        empty = False
-    return empty
+#def is_empty(usr_string):
+#    empty = True
+#    if usr_string != "":
+#        empty = False
+#    return empty
     
 @app.route("/", methods = ["POST", "GET"])
 def index():
@@ -46,8 +47,23 @@ def blog():
 @app.route("/newpost", methods = ["POST", "GET"])
 def newpost(): 
     if request.method == "POST":
-        if (request.form["blog_title"] == "") or (request.form["blog_post"] == ""):
-            return render_template("newpost.html")
+        blog_title_error = ""
+        blog_post_error = ""
+        blg_title = ""
+        blg_post = ""
+        if is_empty(request.form["blog_title"]) or is_empty(request.form["blog_post"]):
+            if is_empty(request.form["blog_title"]):
+                blog_title_error = "Please fill in the title."
+            else:
+                blg_title = request.form["blog_title"]
+            if is_empty(request.form["blog_post"]):
+                blog_post_error = "Please fill in the Body."
+            else:
+                blg_post = request.form["blog_post"]
+
+        #if (request.form["blog_title"] == "") or (request.form["blog_post"] == ""):
+        if blog_title_error or blog_post_error: 
+            return render_template("newpost.html", blg_title = blg_title, blg_post = blg_post,  blog_title_error = blog_title_error, body_error = blog_post_error)
         else:
             blog_title = request.form["blog_title"]
             new_post = request.form["blog_post"]

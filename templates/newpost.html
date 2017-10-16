@@ -1,17 +1,46 @@
 {% extends "base-layout.html" %}
 
+{% block style %}
+    .error {
+        color: red
+    }
+    form {
+         background-color: #eee;
+         padding: 20px;
+         margin: 0 auto;
+         width: 540px;
+         font: 16px sans-serif;
+         border-radius: 10px;
+         }
+            
+         textarea {
+             margin: 10px 0;
+             width: 540px;
+             height: 120px;
+            }
+{% endblock %}
+
 {% block content %}
-   
+    <h1>A Blog Entry</h1>  
     <form action = "{{url_for('newpost')}}", method = "POST">
         <label>
-            <input name = "blog_title" type = "text" />
+            Title for Your Blog
+            <br />
+            <input name = "blog_title" type = "text" value = "{{blg_title}}" />
         </label>
+          <p> 
+            <span class = "error">
+               {{blog_title_error}}
+            </span>
+          </p>
         <br />
         <label>
             Your New Bloc Post
-            <textarea name = "blog_post">
-            </textarea>
+            <textarea name = "blog_post">{{blg_post}}</textarea>
         </label>
+           <p>
+            <span class = "error">{{body_error}}</span>
+           </p>
         <br />
 
         <input type = "submit" value = "Add Entry"/>
