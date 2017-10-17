@@ -3,7 +3,7 @@
 {% block style %}
     .error {
         color: red
-    }
+    } 
     form {
          background-color: #eee;
          padding: 20px;
@@ -18,10 +18,15 @@
              width: 540px;
              height: 120px;
             }
+      h1 {
+        text-align: center;
+       }  
+
 {% endblock %}
 
 {% block content %}
     <h1>A Blog Entry</h1>  
+    <div class = main-np>
     <form action = "{{url_for('newpost')}}", method = "POST">
         <label>
             Title for Your Blog
@@ -45,5 +50,6 @@
 
         <input type = "submit" value = "Add Entry"/>
     </form>
+    </div>
 {% endblock %}
 

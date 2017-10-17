@@ -5,24 +5,26 @@
         <meta content = "initial-scale = 1, width = device-width" name =  "viewport" />
         <style>
             nav {
-                display: inline-block;
-                list-style-type: none;
+                text-align: center;
              } 
         {% block style %} {% endblock %}
         </style>
         <title> {% block title %} {% endblock %} </title>
     </head>
     <body>
+        <div class = main>
         <div>
-            <div>
+           <div>
                 <nav class = "nav-bar">
                     <a href = "{{url_for('blog')}}">Home</a>
+                    
                     <a href = "{{url_for('newpost')}}">Make A Post</a>
                 </nav>
             </div>
             <div>
                 {% block content %} {% endblock %}
             </div>
+        </div>
         </div>
     </body>
 </html>

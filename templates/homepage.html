@@ -1,4 +1,18 @@
 {% extends "base-layout.html" %}
+{% block style %}
+ h1 {
+    text-align: center;
+    font-size: 60   px;
+    font-family: ubuntu;:wq
+   }
+    ul {
+       list-style: none;
+       margin: 0;
+       padding: 0;
+    }
+
+{% endblock %}
+
 
 {%block content %}
     <div>
@@ -16,6 +30,7 @@
                     <a href="./blog?id={{blog_p.id}}" >{{blog_p.blog_title}}</a>
                     {{blog_p.new_post}}
                 </li>
+                <br />
             {% endfor %}
         {% endif %}
     </div>
