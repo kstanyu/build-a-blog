@@ -5,11 +5,13 @@
     font-size: 60   px;
     font-family: ubuntu;:wq
    }
-    ul {
+
+   ul {
        list-style: none;
        margin: 0;
        padding: 0;
     }
+
 
 {% endblock %}
 
@@ -28,7 +30,9 @@
                 {% for blog_p in blogposts %}
                 <li>
                     <a href="./blog?id={{blog_p.id}}" >{{blog_p.blog_title}}</a>
-                    {{blog_p.new_post}}
+                 </li>
+                 <li> 
+                   {{blog_p.blog_post}}
                 </li>
                 <br />
             {% endfor %}
