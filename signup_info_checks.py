@@ -26,7 +26,7 @@ def is_a_match(usr_str_a, usr_str_b):
 def is_email(usr_email):
     valid_email = False
     if((usr_email.count("@") == 1) and (usr_email.count(".") == 1) and not contains_aspace(usr_email)) or usr_email == "": 
-    #if char_search(usr_email, "@. ") and (len(usr_email) >= 3 and len(usr_email) <= 20) :
+    
         valid_email = True
     return valid_email    
      
